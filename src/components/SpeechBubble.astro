@@ -1,0 +1,43 @@
+---
+// BubbleWithIcon.astro
+
+// デフォルトのアクセントカラーとテキストカラー
+const defaultAccent = "bg-skin-accent border-skin-accent";
+const defaultTextColor = "text-skin-base";
+
+const {
+  text,
+  iconSrc,
+  iconName,
+  position = "left",
+  accentColor = defaultAccent,
+  textColor = defaultTextColor,
+} = Astro.props;
+---
+
+<div
+  class={`flex ${position === "right" ? "flex-row-reverse items-start" : "flex-row items-start"}`}
+>
+  <div class="flex flex-col">
+    <div
+      class={`w-20 h-20 rounded-full overflow-hidden border-2 border-skin-${accentColor}`}
+    >
+      <img src={iconSrc} alt={iconName} />
+    </div>
+    <div class={`text-sm w-20 text-center font-bold ${textColor}`}>
+      {iconName}
+    </div>
+  </div>
+  <div class="relative">
+    <div
+      class={`p-4 rounded-lg border bg-skin-card ${textColor} relative ${position === "right" ? "mr-5" : "ml-5"}`}
+    >
+      <div
+        class=`absolute top-0 ${position === "right" ? "-right-4" : "-left-4"} w-0 h-0 border-x-transparent border-b-skin-card`
+        style="border-bottom-color: inherit; border-width: 0 16px 16px;"
+      >
+      </div>
+      {text}
+    </div>
+  </div>
+</div>
