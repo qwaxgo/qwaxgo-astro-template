@@ -54,14 +54,25 @@ module.exports = {
         transparent: "transparent",
       },
       fontFamily: {
-        mono: ["Helvetica Neue",
-        "Arial",
-        "Hiragino Kaku Gothic ProN",
-        "Hiragino Sans",
-        "Meiryo",
-        "sans-serif"],
+        mono: [
+          "Helvetica Neue",
+          "Arial",
+          "Hiragino Kaku Gothic ProN",
+          "Hiragino Sans",
+          "Meiryo",
+          "sans-serif"
+        ],
+        code: [
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "Ubuntu Mono",
+          "Liberation Mono",
+          "Courier New",
+          "monospace"
+        ],
       },
-
       typography: {
         DEFAULT: {
           css: {
