@@ -1,36 +1,50 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "About me"
 ---
 
-AstroPaper is a minimal, responsive and SEO-friendly Astro blog theme. I designed and crafted this based on [my personal blog](https://satnaing.dev/blog).
-
-This theme is aimed to be accessible out of the box. Light and dark mode are supported by
-default and additional color schemes can also be configured.
-
-This theme is self-documented \_ which means articles/posts in this theme can also be considered as documentations. So, see the documentation for more info.
-
 <div>
-  <img src="/assets/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
+  <img src="/qwax-icon.png" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
 </div>
+
+## Name
+
+寿轟(**sugo**)/qwaxgo(クワック**スゴー**)
+
+## Birthday
+
+2001/12/12
+
+## Favorite
+
+- 技術
+- Linux
+- セキュリティ
+- VTuber
+- ドット絵
+- 進撃の巨人
 
 ## Tech Stack
 
-This theme is written in vanilla JavaScript (+ TypeScript for type checking) and a little bit of ReactJS for some interactions. TailwindCSS is used for styling; and Markdown is used for blog contents.
+- JavaScript
+- TypeScript
+- React
+  - 旧サイトや卒業制作に使用
+- Astro
+  - このサイトに使用
+- Linux(Ubuntu/Debian/Arch)
+  - 授業で2年間常用していた
 
-## Features
+## Description
 
-Here are certain features of this site.
-
-- fully responsive and accessible
-- SEO-friendly
-- light & dark mode
-- fuzzy search
-- super fast performance
-- draft posts
-- pagination
-- sitemap & rss feed
-- highly customizable
-
-If you like this theme, you can star/contribute to the [repo](https://github.com/satnaing/astro-paper).  
-Or you can even give any feedback via my [email](mailto:contact@satnaing.dev).
+ハッカー見習い、社会人エンジニアの寿轟と申します。  
+私は都内の専門学校に4年間通い、開発系専攻で開発の分野を学んでいました。  
+一方で、学校の先輩に唆されて学校の授業でArch Linuxを常用するといったこともしていました。  
+そんな私が、担任やその他の大人のサポート、そして推しや元友人の力もあり、  
+最終的に某セキュリティ企業に内定を頂くことになり、現在当該企業で働いています。  
+私がセキュリティ企業で働くことになったのは運命だったと思っており、  
+ホワイトハッカーになる夢を叶えて、楽しく技術を行使しつつ、より良い社会を作りたいです。
+個人勢のVTuberが大好きで、客観的にあまり会社の方には公には出来ないような趣味なのですが  
+彼女らが配信で色々話す中で、垣間見える優しさや人柄、頑張りを感じ取るのが好きで見ています。
+そして、こうして自分の技術スタックを挙げると、びっくりするほど少ないことに驚いています。
+私の技術スタックはまだこれからです。頑張ってアウトプットしていきます。
