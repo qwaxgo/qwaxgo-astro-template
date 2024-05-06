@@ -123,6 +123,23 @@
   pre > code {
     white-space: pre;
   }
+
+  code {
+    font-family: SFMono-Regular,
+      /* iOSとMacOS */
+      Menlo,
+      /* 古いMacOS */
+      Monaco,
+      /* 古いMacOS */
+      Consolas,
+      /* Windows */
+      "Ubuntu Mono",
+        /* Ubuntu */
+      "Liberation Mono",
+      /* Fedora, Ubuntu, Linux Mintなど */
+      "Courier New",
+      monospace;
+  }
 }
 
 @layer components {
