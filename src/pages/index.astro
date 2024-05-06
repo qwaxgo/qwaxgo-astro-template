@@ -23,7 +23,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <Header />
   <main id="main-content">
     <section id="hero">
-      <h1>Mingalaba</h1>
+      <h1>qwaxgo.comへようこそ！</h1>
       <a
         target="_blank"
         href="/rss.xml"
@@ -40,27 +40,55 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </svg>
         <span class="sr-only">RSS Feed</span>
       </a>
-
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p>
-        Read the blog posts or check
-        <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
+      <div id="home-introduce">
+        <div>
+          <div class="introduce-property">
+            <p class="introduce-property-name">
+              Author: <br />
+            </p>
+            <p>
+              寿轟(sugo)/qwaxgo <br />
+            </p>
+          </div>
+          <div class="introduce-property">
+            <p class="introduce-property-name">
+              Birthday: <br />
+            </p>
+            <p>
+              2001/12/12 <br />
+            </p>
+          </div>
+          <div class="introduce-property">
+            <p class="introduce-property-name">
+              Favorite: <br />
+            </p>
+            <p>
+              技術/Linux/セキュリティ/VTuber/ドット絵/進撃の巨人 <br />
+            </p>
+          </div>
+          <div class="introduce-property">
+            <p class="introduce-property-name">
+              About: <br />
+            </p>
+            <p>
+              ホワイトハッカーを夢見て進み続けるqwaxgoです。<br />
+              普段はセキュリティや技術の勉強をしつつ、<br />
+              個人VTuberに現を抜かしています。<br />
+              アイコンは自分で描きました。
+            </p>
+          </div>
+        </div>
+        <div
+          class={`w-48 h-48 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-skin-accent mx-auto my-4 sm:mr-4`}
         >
-          README
-        </LinkButton> for more info.
-      </p>
+          <img src="qwax-icon.png" alt="qwaxgoのアイコン、ドット絵の横顔" />
+        </div>
+      </div>
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
           <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
+            <div class="social-links font-bold">Social Links:</div>
             <Socials />
           </div>
         )
@@ -73,7 +101,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       featuredPosts.length > 0 && (
         <>
           <section id="featured">
-            <h2>Featured</h2>
+            <h2>最新記事</h2>
             <ul>
               {featuredPosts.map(({ data, slug }) => (
                 <Card
@@ -159,5 +187,14 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   }
   .all-posts-btn-wrapper {
     @apply my-8 text-center;
+  }
+  #home-introduce {
+    @apply flex flex-col-reverse sm:flex-row;
+  }
+  .introduce-property {
+    @apply flex flex-col sm:flex-row;
+  }
+  .introduce-property-name {
+    @apply w-20 font-bold;
   }
 </style>
