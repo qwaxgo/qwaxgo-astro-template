@@ -1,10 +1,10 @@
 import type { Site, SocialObjects } from "./types";
 
 export const SITE: Site = {
-  website: "https://qwaxgo.com", // replace this with your deployed domain
-  author: "qwaxgo",
-  desc: "ハッカー見習い専門卒、qwaxgoの技術ブログです",
-  title: "qwaxgo.com",
+  website: "https://lordlution.net", // replace this with your deployed domain
+  author: "荒血ろどりゅう",
+  desc: "Vリスナーでドッターの荒血ろどりゅうの雑多ブログです",
+  title: "lordlution.net",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,
@@ -24,12 +24,12 @@ export const LOGO_IMAGE = {
 };
 
 export const SOCIALS: SocialObjects = [
-  {
-    name: "Github",
-    href: "https://github.com/qwaxgo",
-    linkTitle: `Githubアカウント`,
-    active: true,
-  },
+  // {
+  //   name: "Github",
+  //   href: "https://github.com/qwaxgo",
+  //   linkTitle: `Githubアカウント`,
+  //   active: true,
+  // },
   // {
   //   name: "Facebook",
   //   href: "https://github.com/satnaing/astro-paper",
@@ -50,14 +50,20 @@ export const SOCIALS: SocialObjects = [
   // },
   {
     name: "Mail",
-    href: "qwaxgo@gmail.com",
+    href: "lordlutionnet@gmail.com",
     linkTitle: `各種お問い合わせ・依頼はこちらから`,
     active: true,
   },
   {
     name: "Twitter",
-    href: "https://twitter.com/qwaxgo",
-    linkTitle: `qwaxgoのTwitter(現X)`,
+    href: "https://twitter.com/archlordryu",
+    linkTitle: `荒血ろどりゅうのTwitter(現X)`,
+    active: true,
+  },
+  {
+    name: "Twitter",
+    href: "https://twitter.com/archlorddragon",
+    linkTitle: `荒血ろどりゅうのイラスト用Twitter(現X)`,
     active: true,
   },
   // {
@@ -68,7 +74,7 @@ export const SOCIALS: SocialObjects = [
   // },
   {
     name: "YouTube",
-    href: "https://www.youtube.com/@qwaxgo",
+    href: "https://www.youtube.com/@lordlutionnet",
     linkTitle: `YouTubeチャンネル`,
     active: true,
   },
