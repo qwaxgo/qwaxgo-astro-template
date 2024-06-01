@@ -4,7 +4,7 @@ pubDatetime: 2024-05-06T00:00:00Z
 title: Ubuntu 24.04 LTS 初期設定備忘録 最低限編
 slug: ubuntu-24-04-lts-first-setting-memorandum-minimum
 featured: true
-draft: true
+draft: false
 tags:
   - レビュー
 description: プライベート用PCとしてInspiron 14 7445 2-in-1を購入したので、レビューします。
