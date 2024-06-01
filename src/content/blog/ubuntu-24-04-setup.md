@@ -214,6 +214,16 @@ Windowsはドット絵描きやゲーム等で使う予定なので
 デメリットを受け入れてUbuntu側をLocaltimeに設定する。
 [参考:Windowsとのデュアルブート - ArchWiki](https://wiki.archlinux.jp/index.php/Windows_%E3%81%A8%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88#.E6.99.82.E5.88.BB.E7.B3.BB)
 
+### 個人データフォルダのマウント・リンク張り
+
+マウントしたNTFSデータパーティションに、共有したいデータフォルダを移動し
+そこからシンボリックリンクを張る。
+パスは各々置き換えて頂きたい。
+
+```bash
+ln -s /media/qwaxgo/DATA/Pictures /home/qwaxgo/Pictures
+```
+
 ## 続く
 
 閲覧ありがとうございました！！
