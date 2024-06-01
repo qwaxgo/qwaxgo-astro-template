@@ -2,7 +2,7 @@
 author: qwaxgo
 pubDatetime: 2024-05-06T00:00:00Z
 title: 【未執筆】Inspiron 14 7445 2-in-1 レビュー
-slug: adding-new-posts-in-astropaper-theme
+slug: review-dell-inspiron-14-7445-2-in-1
 featured: true
 draft: true
 tags:
@@ -81,4 +81,4 @@ Windowsはマイクラとかの軽いゲームするときとクリスタで絵�
 
 [Dell Premier充電式アクティブ ペン – PN7522W](https://www.dell.com/ja-jp/shop/dell-premier%E5%85%85%E9%9B%BB%E5%BC%8F%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96-%E3%83%9A%E3%83%B3-pn7522w/apd/750-adru/%E3%82%BF%E3%83%96%E3%83%AC%E3%83%83%E3%83%88%E7%94%A8%E5%91%A8%E8%BE%BA%E6%A9%9F%E5%99%A8)
 
-## 開封
+##
