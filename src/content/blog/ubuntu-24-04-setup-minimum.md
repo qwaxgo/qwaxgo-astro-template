@@ -91,6 +91,7 @@ Ubuntuの設定アプリを開き、
   - Panel Modeをオフ
   - Icon Sizeを64に
   - Position on Screenを下に
+  - Configure Dock Behaviorでボリュームとデバイスを表示するをオフに
 - アクセシビリティ(ここもお好み)
   - 大きな文字をON
 
