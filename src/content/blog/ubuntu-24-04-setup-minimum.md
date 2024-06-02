@@ -201,7 +201,17 @@ snap install code
 ちなみに、GitHubは先ほど導入したgh(github-cli)を使うと、
 SSHログインや鍵の生成まで自動でやってくれるので楽である。
 
-#### GNOME拡張機能
+#### GNOME関連
+
+##### パッケージ
+
+GNOME拡張機能を使えるようにし、追加の設定もできるようにする。
+
+```
+sudo apt install gnome-tweaks gnome-browser-connector
+```
+
+##### GNOME拡張機能
 
 お使いのブラウザ(今回はVivaldi)にGNOME拡張機能をインストールする
 [GNOME Shell 拡張機能](https://extensions.gnome.org)
@@ -220,19 +230,20 @@ Windowsはドット絵描きやゲーム等で使う予定なので
 
 [参考:「Linux」でドライブの自動マウントを有効にするには - ZDNET Japan](https://japan.zdnet.com/article/35204011/)
 
-まず、以下のコマンドでマウントするドライブの名前を確認する。
+#### マウントするドライブの名前を確認する。
 
 ```bash
 lsblk
 ```
 
-お次に、マウントポイントを作成する
+#### マウントポイントを作成する
 
 ```bash
 sudo mkdir /data
 ```
 
-そして、新しいディレクトリの所有者をユーザーに変更する。
+#### 新しいディレクトリの所有者をユーザーに変更する。
+
 `qwaxgo`の部分は適宜自分のユーザー名に読み替える。
 子フォルダーにも所有者の変更を適用するため、`-R`オプションは忘れずに。
 
@@ -240,7 +251,7 @@ sudo mkdir /data
 sudo chown -R qwaxgo:qwaxgo /data
 ```
 
-最後に、`/etc/fstab`に項目を追加する。
+#### `/etc/fstab`に項目を追加する。
 
 ```bash
 sudo vim /etc/fstab
@@ -258,6 +269,9 @@ sudo vim /etc/fstab
 ```
 
 書き終わったら`wq`で保存する。
+
+#### マウント
+
 最後に、一度設定したパーティションがアンマウントされていることを確認した上で、
 
 ```
@@ -274,12 +288,120 @@ sudo chown -R qwaxgo:qwaxgo /data
 
 最後に、再起動してマウントは完了。
 
+#### リンクを張る
+
 マウントしたNTFSデータパーティションに、共有したいデータフォルダを移動し
 そこからシンボリックリンクを張る。
 パスは各々置き換えて頂きたい。
 
 ```bash
 ln -s /data/Pictures /home/qwaxgo/Pictures
+```
+
+### OneDriveのセットアップ
+
+[参考:Ubuntuのonedriveをマルチアカウントに対応するための手順【備忘録】 - Qiita](https://qiita.com/rubbadah/items/47fd22b64ff7e477cff7)
+
+家族でOneDrive(Microsoft 365)を使用しているのでそのセットアップを行う。
+
+#### マウント先フォルダ作成
+
+同期したい個人フォルダのシンボリックリンクを一旦削除しておく。
+
+```bash
+mkdir /data/OneDrive
+```
+
+##### 複数アカウントの利用も想定し、アカウント毎に分ける。
+
+名前は任意で。
+
+```bash
+mkdir /data/OneDrive/qwaxgo
+```
+
+```bash
+mv /data/Pictures /data/OneDrive/qwaxgo/Pictures
+```
+
+#### OneDriveクライアントのインストール
+
+先ほど追加した`universe`リポジトリから、onedriveをインストールする
+
+```bash
+sudo apt get install onedrive
+```
+
+#### 設定ファイル作成
+
+##### 設定ファイルの雛形をダウンロードする
+
+```bash
+mkdir -p ~/.config/onedrive
+wget https://raw.githubusercontent.com/abraunegg/onedrive/master/config -O ~/.config/onedrive/config
+nano ~/.config/onedrive/config
+```
+
+##### アカウント毎に設定ファイルを分ける
+
+名前は任意で
+
+```bash
+mkdir ~/.config/onedriveqwaxgo
+```
+
+##### 雛形をコピーし、エディタで開く
+
+```bash
+cp ~/.config/onedrive/config ~/.config/onedriveqwaxgo/
+vim ~/.config/onedriveqwaxgo/config
+```
+
+sync_dirをコメントアウトし、値を先程作成したディレクトリにして保存。
+
+##### サービス用の設定ファイルをコピーし、エディタで開く
+
+```bash
+sudo cp /usr/lib/systemd/user/onedrive.service /usr/lib/systemd/user/onedriveqwaxgo.service
+sudo vim /usr/lib/systemd/user/onedriveqwaxgo.service
+```
+
+ExecStartの値の後ろに`--confdir="~/.config/onedriveqwaxgo"`を付け加える(ディレクトリは適宜変更)
+
+#### 起動
+
+`--confdir`で設定ファイルを指定することを忘れずに
+
+```bash
+onedrive --confdir="~/.config/onedriveqwaxgo"
+```
+
+ブラウザでログイン画面が表示されるので、
+ログインに成功してアカウント連携したら
+アドレスバーのアドレスをターミナルに貼り付けて認証完了。
+
+#### 同期
+
+常に同期させるように設定する。
+
+```bash
+onedrive --monitor --confdir="~/.config/onedriveMyAccount1" &
+```
+
+#### 自動起動
+
+```bash
+systemctl --user enable --now onedriveqwaxgo
+```
+
+#### リンクの張り直し
+
+日本語でWindowsを使用している場合、同期フォルダ名が日本語になるので
+そのフォルダを個人フォルダにリンクして完了。。
+以下は一例。
+
+```bash
+ln -s /data/OneDrive/qwaxgo/ミュージック ~/Music
 ```
 
 ## 続く
