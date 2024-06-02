@@ -50,14 +50,18 @@ sudo snap refresh
 
 なお、ダウンロード前にBroadcomサポートポータルのユーザープロファイルの作成を済ませておくように。
 
+#### ダウンロード
+
 まずは以下のリンク内の「VMWare Workstation Pro Download」をクリック
 [VMware Fusion Pro: Now Available Free for Personal Use - VMware Fusion Blog](https://blogs.vmware.com/teamfusion/2024/05/fusion-pro-now-available-free-for-personal-use.html)
 
-VMware Workstation Pro 17.0 for Personal Use(Linux)を選択
-最新バージョンを選択
-利用許諾のチェック
-ダウンロードボタンを押す
-この辺は上記の1つ目の参考記事を見ながらやる。
+- VMware Workstation Pro 17.0 for Personal Use(Linux)を選択
+- 最新バージョンを選択
+- 利用許諾のチェック
+- ダウンロードボタンを押す
+  この辺は上記の1つ目の参考記事を見ながらやる。
+
+#### インストール
 
 インストーラーをダウンロードしたら、インストーラーに実行権限を付け、管理者権限でインストーラーを実行
 なお、バージョン番号は適宜読み替えて頂きたい。
@@ -69,7 +73,7 @@ chmod a+x ./VMWare-Workstation-Full-xx.x.x-xxxxxxxx.x86_64.bundle
 sudo chmod a+x ./VMWare-Workstation-Full-xx.x.x-xxxxxxxx.x86_64.bundle
 ```
 
-#### 失敗要因
+#### 導入失敗要因
 
 そしてUbuntuのアプリ一覧から起動！したが…
 
@@ -87,6 +91,8 @@ sudo chmod a+x ./VMWare-Workstation-Full-xx.x.x-xxxxxxxx.x86_64.bundle
 ```bash
 sudo apt install virtualbox
 ```
+
+#### セキュアブート有効化時の作業
 
 ここでセキュアブートを有効化していると、システムのファームウェアに鍵を登録するよう言われるらしいので、上記の参考記事に従い、
 `Configuring Secure Boot`と表示されたらEnterを押し、パスワードを入力する。
@@ -142,13 +148,15 @@ sudo apt install virtualbox
 sudo apt install --reinstall virtualbox
 ```
 
-拡張機能もインストールしておく
+#### 拡張機能もインストールしておく
 
 ```bash
 sudo apt install virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-guest-utils virtualbox-guest-x11
 ```
 
 途中でライセンスへの同意が求められるので、よく読んでから同意する。
+
+#### 起動
 
 メニューからVirtualboxを起動するが、USBデバイスをエニュメレーションに失敗したというエラーが出た。
 なのでvboxusersグループに自分のユーザーを追加。
@@ -178,6 +186,8 @@ Virtualboxの起動が確認できたら、「ファイル」から「環境設�
 
 構築済みVMもあるが、Kaliを触るのは初めてなのでインストーラーの導入から始める。
 
+#### 仮想環境構築
+
 仮想環境の構築は各々好きなようにやってもらって構わないが、私の場合は先述の著書を参考にして以下の設定にした。
 VDIではなくVMDKにしているのは、後々のVMWare移行を考慮してのことである。
 
@@ -203,6 +213,8 @@ Kali Linuxのインストール手順については割愛させて頂く。
 が、デスクトップ環境については、仮想環境で動かすことを考慮し、軽量なXfceを選択。
 GNOMEはホストに使うには綺麗だけど、ゲストには贅沢だね。
 
+#### Guest Addition導入
+
 今回のラストとして、Kali LinuxにGuest Additionsを導入する。
 [参考:Kali Linux2022.1 でハッキングラボをつくってみる 3 設定編（Virtual Box Guest Additions,ネットワーク）- Qiita](https://qiita.com/kagirohi/items/6fc30a8af73158fcf682)
 まずはパッケージの更新。
@@ -225,6 +237,8 @@ sudo sh ./VBoxLinuxAdditions.run
 ```
 
 インストールが完了したら再起動する。
+
+#### おまけ
 
 ついでに、neofetchもインストール。
 
