@@ -159,6 +159,13 @@ sudo usermod -aG vboxusers qwaxgo
 
 どうやらこの後は再起動が必要らしいので再起動し、無事解決。
 
+#### ホストキーの確認
+
+Virtualboxの起動が確認できたら、「ファイル」から「環境設定」を選択して
+「入力」メニューの「仮想マシン」タブから「ホストキーの組み合わせ」の確認を行う。
+普通はデフォルトでOKだが、私の機種には右Ctrlがないので、
+右Shift+左Alt辺りに設定しておく。
+
 ### Kali Linux
 
 私が勉強に使用する、IPUSIRON氏著の「ハッキング・ラボのつくりかた 完全版」ではParrot OSが推奨されていたが
@@ -205,16 +212,15 @@ sudo apt update
 sudo apt upgrade
 ```
 
-そして、Linuxのカーネルヘッダーをインストール。
+そして、一度再起動してLinuxのカーネルヘッダーをインストール。
 
 ```
 sudo apt install linux-headers-$(uname -r)
 ```
 
-そうしたらGuest AdditionのCDを挿入し、
+そうしたらGuest AdditionのCDを挿入して、CDのディレクトリに移動し
 
 ```
-cd /media/cdrom0
 sudo sh ./VBoxLinuxAdditions.run
 ```
 

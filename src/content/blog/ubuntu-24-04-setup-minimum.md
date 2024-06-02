@@ -154,12 +154,12 @@ snap install discord
 
 ### 開発関連
 
-- URLからファイルを取得するcurl
-- 設定ファイル編集に必要なvim
-- バージョン管理システムのgit
-- シェルを使いやすくするzsh(今回は設定しない)
-- gitの認証を楽にするgh(github-cli)
-- パッケージのビルドに必須なbuild-essencial
+- URLからファイルを取得する`curl`
+- 設定ファイル編集に必要な`vim`
+- バージョン管理システムの`git`
+- シェルを使いやすくする`zsh`(今回は設定しない)
+- gitの認証を楽にする`gh(github-cli)`
+- パッケージのビルドに必須な`build-essencial`
 
 ```bash
 sudo apt install curl vim git zsh gh build-essential
@@ -167,7 +167,7 @@ sudo apt install curl vim git zsh gh build-essential
 
 #### エディタ用フォント
 
-まずはフォントがはいっているuniverseリポジトリを追加
+まずはフォントがはいっている`universe`リポジトリを追加
 
 ```bash
 sudo add-apt-repository universe
@@ -181,7 +181,7 @@ sudo apt install fonts-firacode
 
 #### gitの初期設定
 
-ユーザー名とメールアドレスは自分のものに
+ユーザー名``qwaxgo`とメールアドレスは自分のものに
 
 ```bash
 git config --global user.name "qwaxgo"
@@ -216,12 +216,70 @@ Windowsはドット絵描きやゲーム等で使う予定なので
 
 ### 個人データフォルダのマウント・リンク張り
 
+まずはNTFSデータパーティションをマウントする。
+
+[参考:「Linux」でドライブの自動マウントを有効にするには - ZDNET Japan](https://japan.zdnet.com/article/35204011/)
+
+まず、以下のコマンドでマウントするドライブの名前を確認する。
+
+```bash
+lsblk
+```
+
+お次に、マウントポイントを作成する
+
+```bash
+sudo mkdir /data
+```
+
+そして、新しいディレクトリの所有者をユーザーに変更する。
+`qwaxgo`の部分は適宜自分のユーザー名に読み替える。
+子フォルダーにも所有者の変更を適用するため、`-R`オプションは忘れずに。
+
+```bash
+sudo chown -R qwaxgo:qwaxgo /data
+```
+
+最後に、`/etc/fstab`に項目を追加する。
+
+```bash
+sudo vim /etc/fstab
+```
+
+エディタを開いたら、ファイルの最後に項目を追加する。
+…のだが、ntfsパーティションの仕様上、少し以下の参考記事に伴い、追加の一手間が必要になる。
+[参考:permissions - How do I use 'chmod' on an NTFS (or FAT32) partition? - Ask Ubuntu](https://askubuntu.com/questions/11840/how-do-i-use-chmod-on-an-ntfs-or-fat32-partition)
+私の場合は`/dev/nvme0n1p6`がセカンダリードライブである。
+`/dev/nvme0n1p6`の部分は、`lsblk`の出力結果に伴い、各々変更して頂きたい。
+なお、`,`の後にスペースを開けると構文エラーになるので注意。
+
+```
+/dev/nvme0n1p6 /data ntfs-3g auto,users,permissions 0 0
+```
+
+書き終わったら`wq`で保存する。
+最後に、一度設定したパーティションがアンマウントされていることを確認した上で、
+
+```
+mount -a
+```
+
+そして、新しいディレクトリの所有者をもう一度ユーザーに変更する。
+`qwaxgo`の部分は適宜自分のユーザー名に読み替える。
+子フォルダーにも所有者の変更を適用するため、`-R`オプションは忘れずに。
+
+```bash
+sudo chown -R qwaxgo:qwaxgo /data
+```
+
+最後に、再起動してマウントは完了。
+
 マウントしたNTFSデータパーティションに、共有したいデータフォルダを移動し
 そこからシンボリックリンクを張る。
 パスは各々置き換えて頂きたい。
 
 ```bash
-ln -s /media/qwaxgo/DATA/Pictures /home/qwaxgo/Pictures
+ln -s /data/Pictures /home/qwaxgo/Pictures
 ```
 
 ## 続く
