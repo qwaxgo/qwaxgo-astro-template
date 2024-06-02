@@ -225,4 +225,11 @@ sudo sh ./VBoxLinuxAdditions.run
 ```
 
 インストールが完了したら再起動する。
+
+ついでに、neofetchもインストール。
+
+```
+sudo apt install neofetch
+```
+
 疲れたので続きは次回に持ち越しとする。
