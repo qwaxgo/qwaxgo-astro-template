@@ -191,11 +191,18 @@ git config --global user.email "hogehoge@example.com"
 
 #### VSCodeの導入
 
-Snap版VSCodeは日本語入力が使えないという情報があったが、
-Discordでは可能だったのでもしやと思って入れたら、普通に動いた。
+~~Snap版VSCodeは日本語入力が使えないという情報があったが、~~
+~~Discordでは可能だったのでもしやと思って入れたら、普通に動いた。~~
 
+【2024/06/08追記】Snap版VSCode使ってたのですが
+GitHub Copilotの予測が暴走して日本語入力が削除できないみたいな良く分からん不具合が発生しているので
+deb版に戻しました。
+
+VSCode公式HPから`.deb`ファイルをダウンロードして、
+以下のコマンドを実行してインストールして下さい(バージョンは適宜置き換え)
 ```bash
-snap install code
+sudo apt install ./code_x.xx.x-xxxxxxxxxx_amd64.deb
+
 ```
 
 詳しい手順は割愛するが、ログインして拡張機能を導入する。
