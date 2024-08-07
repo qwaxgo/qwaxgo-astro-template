@@ -8,22 +8,40 @@ import Pagination from "@components/Pagination.astro";
 import Card from "@components/Card";
 import { SITE } from "@config";
 
-export interface Props {
+export interface Props<T extends "blog" | "mcskins" | "pictures"> {
   currentPage: number;
   totalPages: number;
-  paginatedPosts: CollectionEntry<"blog">[];
+  paginatedPosts: CollectionEntry<T>[];
 }
 
-const { currentPage, totalPages, paginatedPosts } = Astro.props;
+const { currentPage, totalPages, paginatedPosts } = Astro.props as Props<
+  "blog" | "mcskins" | "pictures"
+>;
+const category = paginatedPosts[0].collection;
 ---
 
-<Layout title={`Blog | ${SITE.title}`}>
-  <Header activeNav="blog" />
-  <Main pageTitle="Blog" pageDesc="All the articles I've posted.">
+<Layout
+  title={`${
+    category === "mcskins"
+      ? "MCSkins"
+      : category === "pictures"
+        ? "Pictures"
+        : "Blog"
+  } | ${SITE.title}`}
+>
+  <Header activeNav={category} />
+  <Main
+    pageTitle={category === "mcskins"
+      ? "MCSkins"
+      : category === "pictures"
+        ? "Pictures"
+        : "Blog"}
+    pageDesc="All the articles I've posted."
+  >
     <ul>
       {
         paginatedPosts.map(({ data, slug }) => (
-          <Card href={`/blog/${slug}/`} frontmatter={data} />
+          <Card href={`/${category}/${slug}/`} frontmatter={data} />
         ))
       }
     </ul>
@@ -32,8 +50,8 @@ const { currentPage, totalPages, paginatedPosts } = Astro.props;
   <Pagination
     {currentPage}
     {totalPages}
-    prevUrl={`/blog${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
-    nextUrl={`/blog/${currentPage + 1}/`}
+    prevUrl={`/${category}${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
+    nextUrl={`/${category}/${currentPage + 1}/`}
   />
 
   <Footer noMarginTop={totalPages > 1} />
