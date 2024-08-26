@@ -8,12 +8,19 @@ import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@utils/slugify";
 import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
+import ContentImage from "@components/ContentImage";
 
-export interface Props {
-  post: CollectionEntry<"blog">;
+export interface Props<T extends "blog" | "mcskins" | "pictures"> {
+  post: CollectionEntry<T>;
 }
 
-const { post } = Astro.props;
+const { post } = Astro.props as Props<"blog" | "mcskins" | "pictures">;
+
+const category = (post as CollectionEntry<"mcskins">)
+  ? "mcskins"
+  : (post as CollectionEntry<"pictures">)
+    ? "pictures"
+    : "blog";
 
 const {
   title,
@@ -30,7 +37,7 @@ const { Content } = await post.render();
 
 const ogImageUrl = typeof ogImage === "string" ? ogImage : ogImage?.src;
 const ogUrl = new URL(
-  ogImageUrl ?? `/blog/${slugifyStr(title)}.png`,
+  ogImageUrl ?? `/${category}/${slugifyStr(title)}.png`,
   Astro.url.origin
 ).href;
 
@@ -74,7 +81,7 @@ const layoutProps = {
       className="my-2"
     />
     <article id="article" role="article" class="prose mx-auto mt-8 max-w-3xl">
-      <Content />
+      <Content components={{ ContentImage }} />
     </article>
 
     <ul class="my-8">

@@ -3,6 +3,8 @@ import { Resvg } from "@resvg/resvg-js";
 import { type CollectionEntry } from "astro:content";
 import postOgImage from "./og-templates/post";
 import siteOgImage from "./og-templates/site";
+import pictureOgImage from "./og-templates/picture";
+import mcSkinOgImage from "./og-templates/mcskin";
 
 const fetchFonts = async () => {
   // Regular Font
@@ -50,6 +52,20 @@ function svgBufferToPngBuffer(svg: string) {
 
 export async function generateOgImageForPost(post: CollectionEntry<"blog">) {
   const svg = await satori(postOgImage(post), options);
+  return svgBufferToPngBuffer(svg);
+}
+
+export async function generateOgImageForPicture(
+  post: CollectionEntry<"pictures">
+) {
+  const svg = await satori(pictureOgImage(post), options);
+  return svgBufferToPngBuffer(svg);
+}
+
+export async function generateOgImageForMcSkin(
+  post: CollectionEntry<"mcskins">
+) {
+  const svg = await satori(mcSkinOgImage(post), options);
   return svgBufferToPngBuffer(svg);
 }
 
