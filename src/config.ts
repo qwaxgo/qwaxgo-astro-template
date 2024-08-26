@@ -12,7 +12,7 @@ export const SITE: Site = {
 };
 
 export const LOCALE = {
-  lang: "jp", // html lang code. Set this empty and default will be "en"
+  lang: "ja", // html lang code. Set this empty and default will be "en"
   langTag: ["ja-JP"], // BCP 47 Language Tags. Set this empty [] to use the environment default
 } as const;
 
