@@ -8,34 +8,34 @@ import Pagination from "@components/Pagination.astro";
 import Card from "@components/Card";
 import { SITE } from "@config";
 
-export interface Props<T extends "blog" | "mcskins" | "pictures"> {
+export interface Props<T extends "blog" /* | "mcskins" | "pictures" */> {
   currentPage: number;
   totalPages: number;
   paginatedPosts: CollectionEntry<T>[];
 }
 
-const { currentPage, totalPages, paginatedPosts } = Astro.props as Props<
-  "blog" | "mcskins" | "pictures"
->;
+const { currentPage, totalPages, paginatedPosts } =
+  Astro.props as Props<"blog" /* | "mcskins" | "pictures" */>;
 const category = paginatedPosts[0].collection;
 ---
 
 <Layout
   title={`${
+    /*
     category === "mcskins"
       ? "MCSkins"
       : category === "pictures"
         ? "Pictures"
-        : "Blog"
+        : */ "Blog"
   } | ${SITE.title}`}
 >
   <Header activeNav={category} />
   <Main
-    pageTitle={category === "mcskins"
+    pageTitle={/*category === "mcskins"
       ? "MCSkins"
       : category === "pictures"
         ? "Pictures"
-        : "Blog"}
+        : */ "Blog"}
     pageDesc="All the articles I've posted."
   >
     <ul>

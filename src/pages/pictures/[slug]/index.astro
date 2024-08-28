@@ -1,4 +1,8 @@
 ---
+throw new Error("Page not found");
+---
+
+<!-- ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import Posts from "@layouts/Posts.astro";
 import PostDetails from "@layouts/PostDetails.astro";
@@ -38,4 +42,4 @@ const pagination = getPagination({
 });
 ---
 
-{post ? <PostDetails post={post} /> : <Posts {...pagination} />}
+{post ? <PostDetails post={post} /> : <Posts {...pagination} />} -->
