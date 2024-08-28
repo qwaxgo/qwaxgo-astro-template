@@ -9,3 +9,16 @@ services:
     command: npm run dev -- --host 0.0.0.0
     volumes:
       - ./:/app
+  dev-container:
+    image: mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
+    volumes:
+      - ${SSH_AUTH_SOCK}:/ssh-agent
+    environment:
+      - SSH_AUTH_SOCK=/ssh-agent
+    ports:
+      # 必要に応じてポートを追加
+      # - "3000:3000"
+    # コンテナ起動後に実行したいコマンドがあれば以下に記述
+    # command: yarn install
+    # 必要ならユーザーの指定
+    # user: root
