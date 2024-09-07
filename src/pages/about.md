@@ -4,7 +4,7 @@ title: "About me"
 ---
 
 <div>
-  <img src="/lord-icon.png" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
+  <img src="/lord_icon.jpg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
 </div>
 
 ## Name
