@@ -16,7 +16,20 @@ export interface Props<T extends "blog" /* | "mcskins" | "pictures" */> {
 
 const { currentPage, totalPages, paginatedPosts } =
   Astro.props as Props<"blog" /* | "mcskins" | "pictures" */>;
-const category = paginatedPosts[0].collection;
+
+// URLからカテゴリを取得
+const urlPath = Astro.url.pathname.split("/"); // URLをスラッシュで分割
+const categoryFromUrl = urlPath[1]; // URLの2番目の要素にカテゴリがあると仮定
+
+// paginatedPostsが空の場合はURLから取得したcategoryを使用
+const category =
+  paginatedPosts.length > 0
+    ? paginatedPosts[0].collection
+    : categoryFromUrl === "blog" /* ||
+        categoryFromUrl === "mcskins" ||
+        categoryFromUrl === "pictures" */
+      ? categoryFromUrl
+      : undefined;
 ---
 
 <Layout
