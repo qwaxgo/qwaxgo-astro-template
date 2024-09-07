@@ -17,11 +17,8 @@ export interface Props<T extends "blog" | "mcskins" | "pictures"> {
 const { currentPage, totalPages, paginatedPosts } = Astro.props as Props<
   "blog" | "mcskins" | "pictures"
 >;
-const category = (paginatedPosts as CollectionEntry<"mcskins">[])
-  ? "mcskins"
-  : (paginatedPosts as CollectionEntry<"pictures">[])
-    ? "pictures"
-    : "blog";
+
+const category = paginatedPosts[0].collection;
 ---
 
 <Layout
