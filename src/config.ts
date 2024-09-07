@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://lordlution.net", // replace this with your deployed domain
   author: "荒血ろどりゅう",
   desc: "Vリスナーでドッターの荒血ろどりゅうの雑多ブログです",
-  title: "lordlution.net",
+  title: "lordlution.net Ortus",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,
