@@ -14,14 +14,13 @@ export interface Props<T extends "blog" | "mcskins" | "pictures"> {
   paginatedPosts: CollectionEntry<T>[];
 }
 
+// URLの /blog/1 や /mcskins/2 のようなパスから collection を取得
+
 const { currentPage, totalPages, paginatedPosts } = Astro.props as Props<
   "blog" | "mcskins" | "pictures"
 >;
-const category = (paginatedPosts as CollectionEntry<"mcskins">[])
-  ? "mcskins"
-  : (paginatedPosts as CollectionEntry<"pictures">[])
-    ? "pictures"
-    : "blog";
+
+const category = paginatedPosts[0].collection;
 ---
 
 <Layout
