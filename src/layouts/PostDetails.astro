@@ -16,11 +16,7 @@ export interface Props<T extends "blog" | "mcskins" | "pictures"> {
 
 const { post } = Astro.props as Props<"blog" | "mcskins" | "pictures">;
 
-const category = (post as CollectionEntry<"mcskins">)
-  ? "mcskins"
-  : (post as CollectionEntry<"pictures">)
-    ? "pictures"
-    : "blog";
+const category = post.collection;
 
 const {
   title,
