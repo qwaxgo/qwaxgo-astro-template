@@ -74,10 +74,11 @@ export const SOCIALS: SocialObjects = [
   // },
   {
     name: "YouTube",
-    href: "https://www.youtube.com/@lordlutionnet",
+    href: "https://www.youtube.com/@ArchLordDragon",
     linkTitle: `YouTubeチャンネル`,
     active: true,
   },
+  // {
   // {
   //   name: "WhatsApp",
   //   href: "https://github.com/satnaing/astro-paper",
