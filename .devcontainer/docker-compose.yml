@@ -8,14 +8,14 @@ services:
     working_dir: /app
     command: npm run dev -- --host 0.0.0.0
     volumes:
-      - ./:/app
+      - /app
   dev-container:
     build:
       context: .
       dockerfile: Dockerfile # Dockerfileを使用する設定
     volumes:
       - ${SSH_AUTH_SOCK}:/ssh-agent
-      - ./:/app # 必要なら作業ディレクトリを共有
+      - /app_dev # 必要なら作業ディレクトリを共有
     environment:
       - SSH_AUTH_SOCK=/ssh-agent
     stdin_open: true
