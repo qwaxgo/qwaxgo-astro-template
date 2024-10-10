@@ -8,17 +8,13 @@ services:
     working_dir: /app
     command: npm run dev -- --host 0.0.0.0
     volumes:
-      - /app
+      - ./:/app
   dev-container:
     build:
       context: .
       dockerfile: Dockerfile # Dockerfileを使用する設定
+    working_dir: /app
     volumes:
-      - ${SSH_AUTH_SOCK}:/ssh-agent
-      - /app_dev # 必要なら作業ディレクトリを共有
-    environment:
-      - SSH_AUTH_SOCK=/ssh-agent
+      - ./:/app
     stdin_open: true
     tty: true
-    # コンテナ起動後に実行したいコマンドがあれば以下に記述
-    command: npm install
