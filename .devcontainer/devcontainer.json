@@ -1,15 +1,29 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
-  "name": "QWAXGO Astro Dev Container",
-  "dockerComposeFile": "../docker-compose.yml",
-  "service": "dev-container",
-  "workspaceFolder": "/app",
-  "shutdownAction": "stopCompose",
-  "remoteEnv": {
-    "SSH_AUTH_SOCK": "/tmp/ssh-agent" // コンテナ内でのSSHエージェントのパス
+  "name": "Node.js & TypeScript",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "features": {
+    "ghcr.io/schlich/devcontainer-features/powerlevel10k:1": {},
+    "ghcr.io/devcontainers-extra/features/zsh-plugins:0": {}
   },
   "mounts": [
-    "source=${env:SSH_AUTH_SOCK},target=/tmp/ssh-agent,type=bind"
+    "source=${env:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind",
+    "source=${env:HOME}/.ssh,target=/home/node/.ssh,type=bind"
   ],
+  "postCreateCommand": "npm install && npx astro dev --host 0.0.0.0",
+  "forwardPorts": [
+    4321
+  ],
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "yarn install",
+  // Configure tool-specific properties.
+  // "customizations": {},
   "customizations": {
     "vscode": {
       "extensions": [
@@ -48,6 +62,7 @@
         "formulahendry.auto-rename-tag"
       ]
     }
-  },
-  "remoteUser": "node"
+  }
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
 }
