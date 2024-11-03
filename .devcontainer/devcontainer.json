@@ -58,7 +58,8 @@
         "antfu.vite",
         "mosapride.zenkaku",
         "formulahendry.auto-close-tag",
-        "formulahendry.auto-rename-tag"
+        "formulahendry.auto-rename-tag",
+        "MylesMurphy.prettify-ts"
       ]
     }
   }
