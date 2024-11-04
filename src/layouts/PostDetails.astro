@@ -10,11 +10,11 @@ import ShareLinks from "@components/ShareLinks.astro";
 import { SITE } from "@config";
 import ContentImage from "@components/ContentImage";
 
-export interface Props<T extends "blog" | "mcskins" | "pictures"> {
+export interface Props<T extends "posts" | "mcskins" | "pictures"> {
   post: CollectionEntry<T>;
 }
 
-const { post } = Astro.props as Props<"blog" | "mcskins" | "pictures">;
+const { post } = Astro.props as Props<"posts" | "mcskins" | "pictures">;
 
 const category = post.collection;
 

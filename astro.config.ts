@@ -18,6 +18,10 @@ export default defineConfig({
     sitemap(),
     mdx(),
   ],
+  redirects: {
+    "/blog": "/posts",
+    "/blog/[...slug]": "/posts/[...slug]",
+  },
   markdown: {
     remarkPlugins: [
       remarkToc,
