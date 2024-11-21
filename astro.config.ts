@@ -18,6 +18,17 @@ export default defineConfig({
     sitemap(),
     mdx(),
   ],
+  redirects: {
+    "/blog": {
+      status: 302,
+      destination: "/posts",
+    },
+    "/blog/(.*)": {
+      // ワイルドカードを使った正規表現形式に変更
+      status: 302,
+      destination: "/posts/$1", // スプレッド部分をキャプチャして渡す
+    },
+  },
   markdown: {
     remarkPlugins: [
       remarkToc,

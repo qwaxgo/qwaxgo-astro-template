@@ -16,7 +16,7 @@ export interface Props<T extends "blog" | "mcskins" | "pictures"> {
 
 const { post } = Astro.props as Props<"blog" | "mcskins" | "pictures">;
 
-const category = post.collection;
+const category = post.collection === "blog" ? "posts" : post.collection;
 
 const {
   title,
