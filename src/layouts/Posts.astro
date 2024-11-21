@@ -8,14 +8,14 @@ import Pagination from "@components/Pagination.astro";
 import Card from "@components/Card";
 import { SITE } from "@config";
 
-export interface Props<T extends "posts" | "mcskins" | "pictures"> {
+export interface Props<T extends "blog" | "mcskins" | "pictures"> {
   currentPage: number;
   totalPages: number;
   paginatedPosts: CollectionEntry<T>[];
 }
 
 const { currentPage, totalPages, paginatedPosts } = Astro.props as Props<
-  "posts" | "mcskins" | "pictures"
+  "blog" | "mcskins" | "pictures"
 >;
 
 // URLからカテゴリを取得
@@ -26,11 +26,11 @@ const categoryFromUrl = urlPath[1]; // URLの2番目の要素にカテゴリが�
 const category =
   paginatedPosts.length > 0
     ? paginatedPosts[0].collection
-    : categoryFromUrl === "posts" ||
-        categoryFromUrl === "mcskins" ||
-        categoryFromUrl === "pictures"
-      ? categoryFromUrl
-      : undefined;
+    : categoryFromUrl === "blog"
+      ? "posts"
+      : categoryFromUrl === "mcskins" || categoryFromUrl === "pictures"
+        ? categoryFromUrl
+        : undefined;
 ---
 
 <Layout

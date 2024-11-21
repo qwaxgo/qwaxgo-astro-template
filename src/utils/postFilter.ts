@@ -1,7 +1,7 @@
 import { SITE } from "@config";
 import type { CollectionEntry } from "astro:content";
 
-const postFilter = <T extends "posts" | "mcskins" | "pictures">({
+const postFilter = <T extends "blog" | "mcskins" | "pictures">({
   data,
 }: CollectionEntry<T>) => {
   const isPublishTimePassed =
