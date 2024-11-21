@@ -34,27 +34,29 @@ const category =
 
 <Layout
   title={`${
-    /*
-    category === "mcskins"
+    /*category === "mcskins"
       ? "Mcskins"
       : category === "pictures"
         ? "Pictures"
-        : */ "Blog"
+        :*/ "Posts"
   } | ${SITE.title}`}
 >
-  <Header activeNav={category} />
+  <Header activeNav={category === "blog" ? "posts" : category} />
   <Main
     pageTitle={/*category === "mcskins"
       ? "Mcskins"
       : category === "pictures"
         ? "Pictures"
-        : */ "Blog"}
+        : */ "Posts"}
     pageDesc="All the articles I've posted."
   >
     <ul>
       {
         paginatedPosts.map(({ data, slug }) => (
-          <Card href={`/${category}/${slug}/`} frontmatter={data} />
+          <Card
+            href={`/${category === "blog" ? "posts" : category}/${slug}/`}
+            frontmatter={data}
+          />
         ))
       }
     </ul>
@@ -63,8 +65,8 @@ const category =
   <Pagination
     {currentPage}
     {totalPages}
-    prevUrl={`/${category}${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
-    nextUrl={`/${category}/${currentPage + 1}/`}
+    prevUrl={`/${category === "blog" ? "posts" : category}${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
+    nextUrl={`/${category === "blog" ? "posts" : category}/${currentPage + 1}/`}
   />
 
   <Footer noMarginTop={totalPages > 1} />
