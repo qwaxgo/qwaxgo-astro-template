@@ -26,11 +26,11 @@ const categoryFromUrl = urlPath[1]; // URLの2番目の要素にカテゴリが�
 const category =
   paginatedPosts.length > 0
     ? paginatedPosts[0].collection
-    : categoryFromUrl === "blog"
-      ? "posts"
-      : categoryFromUrl === "mcskins" || categoryFromUrl === "pictures"
-        ? categoryFromUrl
-        : undefined;
+    : categoryFromUrl === "blog" ||
+        categoryFromUrl === "mcskins" ||
+        categoryFromUrl === "pictures"
+      ? categoryFromUrl
+      : undefined;
 ---
 
 <Layout
@@ -42,7 +42,7 @@ const category =
         : "Posts"
   } | ${SITE.title}`}
 >
-  <Header activeNav={category} />
+  <Header activeNav={category === "blog" ? "posts" : category} />
   <Main
     pageTitle={category === "mcskins"
       ? "Mcskins"
@@ -54,7 +54,10 @@ const category =
     <ul>
       {
         paginatedPosts.map(({ data, slug }) => (
-          <Card href={`/${category}/${slug}/`} frontmatter={data} />
+          <Card
+            href={`/${category === "blog" ? "posts" : category}/${slug}/`}
+            frontmatter={data}
+          />
         ))
       }
     </ul>
@@ -63,8 +66,8 @@ const category =
   <Pagination
     {currentPage}
     {totalPages}
-    prevUrl={`/${category}${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
-    nextUrl={`/${category}/${currentPage + 1}/`}
+    prevUrl={`/${category === "blog" ? "posts" : category}${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
+    nextUrl={`/${category === "blog" ? "posts" : category}/${currentPage + 1}/`}
   />
 
   <Footer noMarginTop={totalPages > 1} />
