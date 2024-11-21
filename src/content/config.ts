@@ -1,8 +1,10 @@
 import { SITE } from "@config";
+import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
-  type: "content",
+  type: "content_layer",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
   schema: ({ image }) =>
     z.object({
       author: z.string().default(SITE.author),
@@ -20,11 +22,20 @@ const blog = defineCollection({
         .optional(),
       description: z.string(),
       canonicalURL: z.string().optional(),
+      editPost: z
+        .object({
+          disabled: z.boolean().optional(),
+          url: z.string().optional(),
+          text: z.string().optional(),
+          appendFilePath: z.boolean().optional(),
+        })
+        .optional(),
     }),
 });
 
 const pictures = defineCollection({
-  type: "content",
+  type: "content_layer",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/pictures" }),
   schema: ({ image }) =>
     z.object({
       author: z.string().default(SITE.author),
@@ -43,11 +54,20 @@ const pictures = defineCollection({
         .optional(),
       description: z.string(),
       canonicalURL: z.string().optional(),
+      editPost: z
+        .object({
+          disabled: z.boolean().optional(),
+          url: z.string().optional(),
+          text: z.string().optional(),
+          appendFilePath: z.boolean().optional(),
+        })
+        .optional(),
     }),
 });
 
 const mcskins = defineCollection({
-  type: "content",
+  type: "content_layer",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/mcskins" }),
   schema: ({ image }) =>
     z.object({
       author: z.string().default(SITE.author),
@@ -66,6 +86,14 @@ const mcskins = defineCollection({
         .optional(),
       description: z.string(),
       canonicalURL: z.string().optional(),
+      editPost: z
+        .object({
+          disabled: z.boolean().optional(),
+          url: z.string().optional(),
+          text: z.string().optional(),
+          appendFilePath: z.boolean().optional(),
+        })
+        .optional(),
     }),
 });
 

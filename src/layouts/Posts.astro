@@ -1,5 +1,4 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Main from "@layouts/Main.astro";
 import Header from "@components/Header.astro";
@@ -7,16 +6,14 @@ import Footer from "@components/Footer.astro";
 import Pagination from "@components/Pagination.astro";
 import Card from "@components/Card";
 import { SITE } from "@config";
+import type { Page } from "astro";
+import type { CollectionEntry } from "astro:content";
 
 export interface Props<T extends "blog" | "mcskins" | "pictures"> {
-  currentPage: number;
-  totalPages: number;
-  paginatedPosts: CollectionEntry<T>[];
+  page: Page<CollectionEntry<T>>;
 }
 
-const { currentPage, totalPages, paginatedPosts } = Astro.props as Props<
-  "blog" | "mcskins" | "pictures"
->;
+const { page } = Astro.props;
 
 // URLからカテゴリを取得
 const urlPath = Astro.url.pathname.split("/"); // URLをスラッシュで分割
@@ -24,8 +21,8 @@ const categoryFromUrl = urlPath[1]; // URLの2番目の要素にカテゴリが�
 
 // paginatedPostsが空の場合はURLから取得したcategoryを使用
 const category =
-  paginatedPosts.length > 0
-    ? paginatedPosts[0].collection
+  page.data.length > 0
+    ? page.data[0].collection
     : categoryFromUrl === "blog" ||
         categoryFromUrl === "mcskins" ||
         categoryFromUrl === "pictures"
@@ -53,7 +50,7 @@ const category =
   >
     <ul>
       {
-        paginatedPosts.map(({ data, slug }) => (
+        page.data.map(({ data, slug }) => (
           <Card
             href={`/${category === "blog" ? "posts" : category}/${slug}/`}
             frontmatter={data}
@@ -63,12 +60,7 @@ const category =
     </ul>
   </Main>
 
-  <Pagination
-    {currentPage}
-    {totalPages}
-    prevUrl={`/${category === "blog" ? "posts" : category}${currentPage - 1 !== 1 ? "/" + (currentPage - 1) : ""}/`}
-    nextUrl={`/${category === "blog" ? "posts" : category}/${currentPage + 1}/`}
-  />
+  <Pagination {page} />
 
-  <Footer noMarginTop={totalPages > 1} />
+  <Footer noMarginTop={page.lastPage > 1} />
 </Layout>

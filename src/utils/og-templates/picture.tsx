@@ -1,8 +1,10 @@
-import { SITE } from "@config";
+import satori from "satori";
 import type { CollectionEntry } from "astro:content";
+import { SITE } from "@config";
+import loadGoogleFonts, { type FontOptions } from "../loadGoogleFont";
 
-export default (post: CollectionEntry<"pictures">) => {
-  return (
+export default async (post: CollectionEntry<"pictures">) => {
+  return satori(
     <div
       style={{
         background: "#fefbfb",
@@ -91,6 +93,14 @@ export default (post: CollectionEntry<"pictures">) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    {
+      width: 1200,
+      height: 630,
+      embedFont: true,
+      fonts: (await loadGoogleFonts(
+        post.data.title + post.data.author + SITE.title + "by"
+      )) as FontOptions[],
+    }
   );
 };
