@@ -12,7 +12,7 @@
     "source=${env:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind",
     "source=${env:HOME}/.ssh,target=/home/node/.ssh,type=bind"
   ],
-  "postCreateCommand": "npm install && npm run dev",
+  "postCreateCommand": "npm install",
   "forwardPorts": [
     4321
   ],
