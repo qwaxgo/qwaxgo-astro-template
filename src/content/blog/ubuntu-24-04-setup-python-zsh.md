@@ -15,8 +15,9 @@ description: Ubuntu 24.04 LTSの初期設定が終わったので、Python環境
 
 ## 注意
 
-初めましての方は初めまして。qwaxgoと申します。  
-今回は初任給を使ってDellで購入したInspiron 14 7445 2-in-1に、Ubuntu24.04 LTSを入れ、初期設定を終えたのでPython環境と、ついでにZsh環境を構築します。
+初めましての方は初めまして。qwaxgoと申します。<br>
+今回は中古で買ったHP Probook 430 G8に、Ubuntu24.04 LTSを入れ、初期設定を終えたので<br>
+Python環境と、ついでにZsh環境を構築します。
 
 [Inspiron 14 2-in-1 ノートパソコン(AMD)](https://www.dell.com/ja-jp/shop/laptops/amd/spd/inspiron-14-7445-2-in-1-laptop/oic7445200201monojp)
 
@@ -41,7 +42,7 @@ sudo snap refresh
 
 ### Zshの導入
 
-最初の記事で入れたZshについて、今回はOh My Zsh!を使用する。
+最初の記事で入れたZshについて、今回はOh My Zsh!を使用する。<br>
 [参考:いい加減Oh My Zsh!を入れた](https://zenn.dev/hironobu0824/articles/oh_my_zsh_install)
 
 #### Oh-My-Zshインストール
@@ -104,7 +105,7 @@ antigen apply
 
 ### Pythonの導入
 
-Python.jpでは自前でビルドを行うことが推奨されているが、
+Python.jpでは自前でビルドを行うことが推奨されているが、<br>
 どのみちvenvなどの仮想環境を使うことを考えると、pyenvを導入したほうが良いという結論になった。
 
 [参考:Ubuntu環境のPython: Python環境構築ガイド -python.jp](https://www.python.jp/install/ubuntu/index.html)
@@ -127,7 +128,7 @@ sudo apt -y install python-is-python3 python-dev-is-python3 python3-pip python3-
 
 #### pyenvのインストール
 
-現在は以下のコマンドで一発で入るようになった。
+現在は以下のコマンドで一発で入るようになった。<br>
 このコマンドでインストールする場合は、[アップデート用のプラグイン](https://github.com/pyenv/pyenv-update)まで一緒に入れてくれる。
 
 ```zsh
@@ -136,7 +137,7 @@ curl https://pyenv.run | bash
 
 #### 環境変数の記述
 
-pyenvの環境変数を記述する必要がある。
+pyenvの環境変数を記述する必要がある。<br>
 `~/.profile`及び`~/.zprofile`に以下を追記する。
 
 ```zsh

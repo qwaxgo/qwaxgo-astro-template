@@ -14,10 +14,8 @@ description: Ubuntu 24.04 LTSを導入したので、初期設定していきま
 
 ## 注意
 
-初めましての方は初めまして。qwaxgoと申します。  
-今回は初任給を使ってDellで購入したInspiron 14 7445 2-in-1に、Ubuntu24.04 LTSを入れ、初期設定を行います。
-
-[Inspiron 14 2-in-1 ノートパソコン(AMD)](https://www.dell.com/ja-jp/shop/laptops/amd/spd/inspiron-14-7445-2-in-1-laptop/oic7445200201monojp)
+初めましての方は初めまして。qwaxgoと申します。<br>
+今回は中古で買ったHP Probook 430 G8に、Ubuntu24.04 LTSを入れ、初期設定を行います。
 
 ## インストール
 
@@ -26,18 +24,17 @@ description: Ubuntu 24.04 LTSを導入したので、初期設定していきま
 - PC本体
 - USBメモリ
 
-既にしてしまったので、テキストで説明させて頂く。
-今回はメモリ16GB、SSD1TB想定でやっていく。
+既にしてしまったので、テキストで説明させて頂く。<br>
+今回はメモリ16GB、SSD256GB想定でやっていく。今度増設する。<br>
 
-インストール方法としては、まずはWindowsの機能で、予めWindowsのパーティションを200GBぐらいに縮める。
-私はここですぐにUbuntu/Windows11間の共有パーティションをNTFSで作ってしまったのですが、これが大きな落とし穴だった。
+デュアルブートはしないので、Windows側からBitlockerの無効化だけする。<br>
 
-次に、USBメモリを刺した状態でPCを一度シャットダウンし、再度電源を入れる。
-この状態でF12を長押ししてブートメニューを開き、UbuntuをUSBからブートする。
-なお、Ubuntuはセキュアブートに対応しているため、基本的にセキュアブートの無効化は不要。
-…が、Nvidia GPU搭載ノートPCの場合は、セキュアブートを有効化しているとドライバを入れるのに苦労するようで。
-面倒な方は無効化、セキュリティを重視したい方はNvidiaドライバーの署名方法を各自調べて頂ければ。
-今回はオンボードなので割愛する。
+次に、USBメモリを刺した状態でPCを一度シャットダウンし、再度電源を入れる。<br>
+この状態でF12を長押ししてブートメニューを開き、UbuntuをUSBからブートする。<br>
+なお、Ubuntuはセキュアブートに対応しているため、基本的にセキュアブートの無効化は不要。<br>
+…が、Nvidia GPU搭載ノートPCの場合は、セキュアブートを有効化しているとドライバを入れるのに苦労するようで。<br>
+面倒な方は無効化、セキュリティを重視したい方はNvidiaドライバーの署名方法を各自調べて頂ければ。<br>
+今回はオンボードなので割愛する。<br>
 
 その後
 
@@ -49,29 +46,7 @@ description: Ubuntu 24.04 LTSを導入したので、初期設定していきま
 - 対話式インストールを選択
 - 規定の選択拡張選択可を選ぶ
 - プロプライエタリなソフトウェアを入れるかどうか決める
-
-などして、ディスクのセットアップまで辿り着いたら
-「Windowsとの共存」は選ばずに手動パーティショニングを選ぶ。
-なおこの後の作業で、**Windowsが入っているパーティションや、回復パーティションをぶっ飛ばさないように注意。**
-
-まずは縮めたパーティションがWindowsやら回復パーティションやら除いて800GBほど残っているので
-Ubuntuのroot領域を200GB程度取る。
-200GBのパーティションをext4形式で作り、マウントポイントとして/(ルート)を選択する。
-
-次に、これはお好みですが、私はswapパーティションをメインメモリの倍の32GBほど取った。
-
-最後に、残りの500GB程度をNTFSでフォーマットするが、**インストール時には何もマウントしないように。**
-
-ここで最初の私は、NTFSファイルシステムのパーティションを/homeディレクトリにマウントしてインストールしたが
-それをやると、NTFSファイルシステムの仕様で、**/homeディレクトリ以下のファイルのパーミッションが変えられなくなる。**
-そのため、私は/homeディレクトリを直接マウントするのをやめ、個人フォルダ毎にホームディレクトリにシンボリックリンクを張る方式を取ることにした。
-
-また、以下の記事を参考に、Ubuntuのブートローダーを、Windows Boot Managerとは別のパーティションに入れようとしたが
-Ubuntuのインストーラの仕様で、先頭のパーティションでWindows Boot Managerと共存させないと次に進めなかったので
-泣く泣くWindows Boot Managerのパーティションに入れた。
-恐らく、これは面倒なことに手動で移すしかなさそうだが、万が一のことがあってもGRUBを再インストールすれば済むらしいので、一先ず今回は先に進む。
-
-[参考:ブートローダーはWindows Boot Managerのまま、WindowsとLinuxでデュアルブート](https://w.atwiki.jp/linuxjapanwiki/pages/116.html)
+- デュアルブートしない場合、パーティションを全削除
 
 あとはアカウント設定なりタイムゾーンなりを決め、インストールを完了。
 
@@ -126,9 +101,9 @@ LANG=C xdg-user-dirs-gtk-update
 sudo apt install fcitx5 fcitx5-mozc fcitx5-config-qt fcitx5-frontend-all
 ```
 
-Fcitx使用時にprofileに書き込んでいた環境変数だが
-ArchWikiによると、Xwaylandを使用するアプリケーションにのみ必要なもので
-グローバル設定はすべきでないらしいので一先ずこのままに。
+Fcitx使用時にprofileに書き込んでいた環境変数だが<br>
+ArchWikiによると、Xwaylandを使用するアプリケーションにのみ必要なもので<br>
+グローバル設定はすべきでないらしいので一先ずこのままに。<br>
 [参考:Fcitx5 - ArchWiki](https://wiki.archlinux.jp/index.php/Fcitx5)
 
 ### 必携アプリ
@@ -147,7 +122,7 @@ sudo apt install vivaldi-stable
 
 #### Discord
 
-snapから導入し、日本語入力が出来ることを確認した。
+snapから導入し、日本語入力が出来ることを確認した。<br>
 
 ```bash
 snap install discord
@@ -191,29 +166,30 @@ git config --global user.email "hogehoge@example.com"
 
 #### VSCodeの導入
 
-~~Snap版VSCodeは日本語入力が使えないという情報があったが、~~
+~~Snap版VSCodeは日本語入力が使えないという情報があったが、~~<br>
 ~~Discordでは可能だったのでもしやと思って入れたら、普通に動いた。~~
 
-【2024/06/08追記】Snap版VSCode使ってたのですが
-GitHub Copilotの予測が暴走して日本語入力が削除できないみたいな良く分からん不具合が発生しているので
+【2024/06/08追記】Snap版VSCode使ってたのですが<br>
+GitHub Copilotの予測が暴走して日本語入力が削除できないみたいな良く分からん不具合が発生しているので<br>
 deb版に戻しました。
 
-VSCode公式HPから`.deb`ファイルをダウンロードして、
-以下のコマンドを実行してインストールして下さい(バージョンは適宜置き換え)
+VSCode公式HPから`.deb`ファイルをダウンロードして、<br>
+以下のコマンドを実行してインストールして下さい(バージョンは適宜置き換え)<br>
+
 ```bash
 sudo apt install ./code_x.xx.x-xxxxxxxxxx_amd64.deb
 
 ```
 
-詳しい手順は割愛するが、ログインして拡張機能を導入する。
-ちなみに、GitHubは先ほど導入したgh(github-cli)を使うと、
+詳しい手順は割愛するが、ログインして拡張機能を導入する。<br>
+ちなみに、GitHubは先ほど導入したgh(github-cli)を使うと、<br>
 SSHログインや鍵の生成まで自動でやってくれるので楽である。
 
 #### GNOME関連
 
 ##### パッケージ
 
-GNOME拡張機能を使えるようにし、追加の設定もできるようにする。
+GNOME拡張機能を使えるようにし、追加の設定もできるようにする。<br>
 
 ```
 sudo apt install gnome-tweaks gnome-browser-connector
@@ -221,94 +197,12 @@ sudo apt install gnome-tweaks gnome-browser-connector
 
 ##### GNOME拡張機能
 
-お使いのブラウザ(今回はVivaldi)にGNOME拡張機能をインストールする
+お使いのブラウザ(今回はVivaldi)にGNOME拡張機能をインストールする<br>
 [GNOME Shell 拡張機能](https://extensions.gnome.org)
-
-### 時刻ズレの防止
-
-ArchWikiによると、Windows側でUTCを使えばWindowsをしばらく起動しなくてもいいので、そちらを推奨するらしいが
-レジストリを変更したり、NTPデーモンを動かしたりして面倒な上
-Windowsはドット絵描きやゲーム等で使う予定なので
-デメリットを受け入れてUbuntu側をLocaltimeに設定する。
-[参考:Windowsとのデュアルブート - ArchWiki](https://wiki.archlinux.jp/index.php/Windows_%E3%81%A8%E3%81%AE%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88#.E6.99.82.E5.88.BB.E7.B3.BB)
-
-### 個人データフォルダのマウント・リンク張り
-
-まずはNTFSデータパーティションをマウントする。
-
-[参考:「Linux」でドライブの自動マウントを有効にするには - ZDNET Japan](https://japan.zdnet.com/article/35204011/)
-
-#### マウントするドライブの名前を確認する。
-
-```bash
-lsblk
-```
-
-#### マウントポイントを作成する
-
-```bash
-sudo mkdir /data
-```
-
-#### 新しいディレクトリの所有者をユーザーに変更する。
-
-`qwaxgo`の部分は適宜自分のユーザー名に読み替える。
-子フォルダーにも所有者の変更を適用するため、`-R`オプションは忘れずに。
-
-```bash
-sudo chown -R qwaxgo:qwaxgo /data
-```
-
-#### `/etc/fstab`に項目を追加する。
-
-```bash
-sudo vim /etc/fstab
-```
-
-エディタを開いたら、ファイルの最後に項目を追加する。
-…のだが、ntfsパーティションの仕様上、少し以下の参考記事に伴い、追加の一手間が必要になる。
-[参考:permissions - How do I use 'chmod' on an NTFS (or FAT32) partition? - Ask Ubuntu](https://askubuntu.com/questions/11840/how-do-i-use-chmod-on-an-ntfs-or-fat32-partition)
-私の場合は`/dev/nvme0n1p6`がセカンダリードライブである。
-`/dev/nvme0n1p6`の部分は、`lsblk`の出力結果に伴い、各々変更して頂きたい。
-なお、`,`の後にスペースを開けると構文エラーになるので注意。
-
-```
-/dev/nvme0n1p6 /data ntfs-3g auto,users,permissions 0 0
-```
-
-書き終わったら`wq`で保存する。
-
-#### マウント
-
-最後に、一度設定したパーティションがアンマウントされていることを確認した上で、
-
-```
-mount -a
-```
-
-そして、新しいディレクトリの所有者をもう一度ユーザーに変更する。
-`qwaxgo`の部分は適宜自分のユーザー名に読み替える。
-子フォルダーにも所有者の変更を適用するため、`-R`オプションは忘れずに。
-
-```bash
-sudo chown -R qwaxgo:qwaxgo /data
-```
-
-最後に、再起動してマウントは完了。
-
-#### リンクを張る
-
-マウントしたNTFSデータパーティションに、共有したいデータフォルダを移動し
-そこからシンボリックリンクを張る。
-パスは各々置き換えて頂きたい。
-
-```bash
-ln -s /data/Pictures /home/qwaxgo/Pictures
-```
 
 ### OneDriveのセットアップ
 
-[参考:Ubuntuのonedriveをマルチアカウントに対応するための手順【備忘録】 - Qiita](https://qiita.com/rubbadah/items/47fd22b64ff7e477cff7)
+[参考:Ubuntuのonedriveをマルチアカウントに対応するための手順【備忘録】 - Qiita](https://qiita.com/rubbadah/items/47fd22b64ff7e477cff7)<br>
 
 家族でOneDrive(Microsoft 365)を使用しているのでそのセットアップを行う。
 
@@ -384,8 +278,8 @@ ExecStartの値の後ろに`--confdir="~/.config/onedriveqwaxgo"`を付け加え
 onedrive --confdir="~/.config/onedriveqwaxgo"
 ```
 
-ブラウザでログイン画面が表示されるので、
-ログインに成功してアカウント連携したら
+ブラウザでログイン画面が表示されるので、<br>
+ログインに成功してアカウント連携したら<br>
 アドレスバーのアドレスをターミナルに貼り付けて認証完了。
 
 #### 同期
@@ -393,7 +287,8 @@ onedrive --confdir="~/.config/onedriveqwaxgo"
 常に同期させるように設定する。
 
 ```bash
-onedrive --monitor --confdir="~/.config/onedriveMyAccount1" &
+onedrive --monitor --confdir="~/.config/onedriveMyAccount1" &<br>
+
 ```
 
 #### 自動起動
@@ -404,8 +299,8 @@ systemctl --user enable --now onedriveqwaxgo
 
 #### リンクの張り直し
 
-日本語でWindowsを使用している場合、同期フォルダ名が日本語になるので
-そのフォルダを個人フォルダにリンクして完了。。
+日本語でWindowsを使用している場合、同期フォルダ名が日本語になるので<br>
+そのフォルダを個人フォルダにリンクして完了。<br>
 以下は一例。
 
 ```bash

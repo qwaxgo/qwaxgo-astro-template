@@ -15,8 +15,8 @@ description: Ubuntu 24.04 LTSの初期設定が終わったので、CTF用の環
 
 ## 注意
 
-初めましての方は初めまして。qwaxgoと申します。  
-今回は初任給を使ってDellで購入したInspiron 14 7445 2-in-1に、Ubuntu24.04 LTSを入れ、初期設定を終えたのでCTF環境を構築します。
+初めましての方は初めまして。qwaxgoと申します。<br>
+今回は中古で買ったHP Probook 430 G8に、Ubuntu24.04 LTSを入れ、初期設定を終えたのでCTF環境を構築します。
 
 [Inspiron 14 2-in-1 ノートパソコン(AMD)](https://www.dell.com/ja-jp/shop/laptops/amd/spd/inspiron-14-7445-2-in-1-laptop/oic7445200201monojp)
 
@@ -46,9 +46,9 @@ sudo snap refresh
 [参考:VMware Workstation Pro と VMware Fusion Pro の個人利用版が無償になったので使ってみた (2024 年 5 月) - Qiita](https://qiita.com/sanjushi003/items/b4ba2687f99412fd7c38)
 [参考:Ubuntu20.04にVMWare Playerをインストールする - Qiita](https://qiita.com/kannkyo/items/b1cf86925ef5a6e30dfa)
 
-折角無料化したので、今回はVirtualboxではなくこちらを導入したかった。
+折角無料化したので、今回はVirtualboxではなくこちらを導入したかった。<br>
 
-なお、ダウンロード前にBroadcomサポートポータルのユーザープロファイルの作成を済ませておくように。
+なお、ダウンロード前にBroadcomサポートポータルのユーザープロファイルの作成を済ませておくように。<br>
 
 #### ダウンロード
 
@@ -63,8 +63,8 @@ sudo snap refresh
 
 #### インストール
 
-インストーラーをダウンロードしたら、インストーラーに実行権限を付け、管理者権限でインストーラーを実行
-なお、バージョン番号は適宜読み替えて頂きたい。
+インストーラーをダウンロードしたら、インストーラーに実行権限を付け、管理者権限でインストーラーを実行<br>
+なお、バージョン番号は適宜読み替えて頂きたい。<br>
 …というか、VMまで打ってTabキー押せば自動で補完してくれる。
 
 ```bash
@@ -75,11 +75,11 @@ sudo chmod a+x ./VMWare-Workstation-Full-xx.x.x-xxxxxxxx.x86_64.bundle
 
 #### 導入失敗要因
 
-そしてUbuntuのアプリ一覧から起動！したが…
+そしてUbuntuのアプリ一覧から起動！したが…<br>
 
 [参考:Ubuntu LinuxでVMware Workstation pro/playerを使うときの注意 - kashiの日記](http://verifiedby.me/adiary/0171#c2)
 
-どうやらUbuntu 24.04 LTSの新しいカーネルに対応しておらず、初回起動時のカーネルモジュールのコンパイルでエラーになってしまうらしい。
+どうやら2024/05/06時点では、Ubuntu 24.04 LTSの新しいカーネルに対応しておらず、初回起動時のカーネルモジュールのコンパイルでエラーになってしまうらしい。<br>
 自分でカーネルをコンパイルする必要があるが、今回は面倒なので別のソフトを使う。
 
 ### Virtualbox
@@ -94,10 +94,10 @@ sudo apt install virtualbox
 
 #### セキュアブート有効化時の作業
 
-ここでセキュアブートを有効化していると、システムのファームウェアに鍵を登録するよう言われるらしいので、上記の参考記事に従い、
-`Configuring Secure Boot`と表示されたらEnterを押し、パスワードを入力する。
-このパスワードは使い捨てのものらしいのだが、一応私はある程度の強度を持たせておく。
-ただし、ややこしい記号を入れると、キーボード配列の違いでパスワードの認証に失敗する可能性があるので、
+ここでセキュアブートを有効化していると、システムのファームウェアに鍵を登録するよう言われるらしいので、上記の参考記事に従い、<br>
+`Configuring Secure Boot`と表示されたらEnterを押し、パスワードを入力する。<br>
+このパスワードは使い捨てのものらしいのだが、一応私はある程度の強度を持たせておく。<br>
+ただし、ややこしい記号を入れると、キーボード配列の違いでパスワードの認証に失敗する可能性があるので、<br>
 半角英数字程度に留めておくこと。どうせ使い捨てだしね。
 
 <details>
@@ -140,8 +140,8 @@ sudo apt install virtualbox
 
 </details>
 
-パスワードを入れたらインストールが続くが、エラーを吐くので一旦再起動。
-先ほど設定したパスワードを入力してMOKを登録したら、再度再起動
+パスワードを入れたらインストールが続くが、エラーを吐くので一旦再起動。<br>
+先ほど設定したパスワードを入力してMOKを登録したら、再度再起動<br>
 ターミナルに以下のコマンドを入れてインストールを完了する。
 
 ```bash
@@ -158,7 +158,7 @@ sudo apt install virtualbox-ext-pack virtualbox-guest-additions-iso virtualbox-g
 
 #### 起動
 
-メニューからVirtualboxを起動するが、USBデバイスをエニュメレーションに失敗したというエラーが出た。
+メニューからVirtualboxを起動するが、USBデバイスをエニュメレーションに失敗したというエラーが出た。<br>
 なのでvboxusersグループに自分のユーザーを追加。
 
 ```bash
@@ -169,16 +169,16 @@ sudo usermod -aG vboxusers qwaxgo
 
 #### ホストキーの確認
 
-Virtualboxの起動が確認できたら、「ファイル」から「環境設定」を選択して
-「入力」メニューの「仮想マシン」タブから「ホストキーの組み合わせ」の確認を行う。
-普通はデフォルトでOKだが、私の機種には右Ctrlがないので、
+Virtualboxの起動が確認できたら、「ファイル」から「環境設定」を選択して<br>
+「入力」メニューの「仮想マシン」タブから「ホストキーの組み合わせ」の確認を行う。<br>
+普通はデフォルトでOKだが、私の機種には右Ctrlがないので、<br>
 右Shift+左Alt辺りに設定しておく。
 
 ### Kali Linux
 
-私が勉強に使用する、IPUSIRON氏著の「ハッキング・ラボのつくりかた 完全版」ではParrot OSが推奨されていたが
-そこに記載されていたKali LinuxとParrot OSの比較を読んでみたところ
-自分の場合は十分Kaliでも補完できるだろうと考え、更にハッキングツールもKaliの方が多く
+私が勉強に使用する、IPUSIRON氏著の「ハッキング・ラボのつくりかた 完全版」ではParrot OSが推奨されていたが<br>
+そこに記載されていたKali LinuxとParrot OSの比較を読んでみたところ<br>
+自分の場合は十分Kaliでも補完できるだろうと考え、更にハッキングツールもKaliの方が多く<br>
 かつ私は何を隠そうドラゴンが好きなので、Kali Linuxを導入する。
 
 [Get Kali | Kali Linux](https://www.kali.org/get-kali/#kali-installer-images)
@@ -188,7 +188,7 @@ Virtualboxの起動が確認できたら、「ファイル」から「環境設�
 
 #### 仮想環境構築
 
-仮想環境の構築は各々好きなようにやってもらって構わないが、私の場合は先述の著書を参考にして以下の設定にした。
+仮想環境の構築は各々好きなようにやってもらって構わないが、私の場合は先述の著書を参考にして以下の設定にした。<br>
 VDIではなくVMDKにしているのは、後々のVMWare移行を考慮してのことである。
 
 - 名前:Kali Linux
@@ -208,15 +208,15 @@ VDIではなくVMDKにしているのは、後々のVMWare移行を考慮して�
 - USBコントローラー: USB 3.0
   を設定した。
 
-Kali Linuxは頻繁に画面構成が変わると、先述の著書に書いてあったので
-Kali Linuxのインストール手順については割愛させて頂く。
-が、デスクトップ環境については、仮想環境で動かすことを考慮し、軽量なXfceを選択。
+Kali Linuxは頻繁に画面構成が変わると、先述の著書に書いてあったので<br>
+Kali Linuxのインストール手順については割愛させて頂く。<br>
+が、デスクトップ環境については、仮想環境で動かすことを考慮し、軽量なXfceを選択。<br>
 GNOMEはホストに使うには綺麗だけど、ゲストには贅沢だね。
 
 #### Guest Addition導入
 
-今回のラストとして、Kali LinuxにGuest Additionsを導入する。
-[参考:Kali Linux2022.1 でハッキングラボをつくってみる 3 設定編（Virtual Box Guest Additions,ネットワーク）- Qiita](https://qiita.com/kagirohi/items/6fc30a8af73158fcf682)
+今回のラストとして、Kali LinuxにGuest Additionsを導入する。<br>
+[参考:Kali Linux2022.1 でハッキングラボをつくってみる 3 設定編（Virtual Box Guest Additions,ネットワーク）- Qiita](https://qiita.com/kagirohi/items/6fc30a8af73158fcf682)<br>
 まずはパッケージの更新。
 
 ```
