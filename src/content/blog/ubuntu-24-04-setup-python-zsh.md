@@ -1,10 +1,10 @@
 ---
 author: qwaxgo
-pubDatetime: 2024-05-06T00:00:00Z
+pubDatetime: 2024-12-03T00:00:00Z
 title: Ubuntu 24.04 LTS 初期設定備忘録 Python/Oh-My-Zsh編
 slug: ubuntu-24-04-lts-first-setting-memorandum-python-zsh
 featured: true
-draft: true
+draft: false
 tags:
   - 備忘録
   - Ubuntu
