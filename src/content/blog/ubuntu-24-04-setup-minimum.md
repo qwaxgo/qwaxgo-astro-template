@@ -211,7 +211,7 @@ sudo apt install gnome-tweaks gnome-browser-connector
 同期したい個人フォルダのシンボリックリンクを一旦削除しておく。
 
 ```bash
-mkdir /data/OneDrive
+mkdir ~/OneDrive
 ```
 
 ##### 複数アカウントの利用も想定し、アカウント毎に分ける。
@@ -219,11 +219,11 @@ mkdir /data/OneDrive
 名前は任意で。
 
 ```bash
-mkdir /data/OneDrive/qwaxgo
+mkdir ~/OneDrive/qwaxgo
 ```
 
 ```bash
-mv /data/Pictures /data/OneDrive/qwaxgo/Pictures
+mv ~/Pictures ~~/OneDrive/qwaxgo/Pictures
 ```
 
 #### OneDriveクライアントのインストール
@@ -304,7 +304,7 @@ systemctl --user enable --now onedriveqwaxgo
 以下は一例。
 
 ```bash
-ln -s /data/OneDrive/qwaxgo/ミュージック ~/Music
+ln -s ~/OneDrive/qwaxgo/ミュージック ~/Music
 ```
 
 ## 続く
