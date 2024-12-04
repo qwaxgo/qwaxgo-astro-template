@@ -208,8 +208,6 @@ sudo apt install gnome-tweaks gnome-browser-connector
 
 #### マウント先フォルダ作成
 
-同期したい個人フォルダのシンボリックリンクを一旦削除しておく。
-
 ```bash
 mkdir ~/OneDrive
 ```
@@ -297,11 +295,8 @@ onedrive --monitor --confdir="~/.config/onedriveMyAccount1" &<br>
 systemctl --user enable --now onedriveqwaxgo
 ```
 
-#### リンクの張り直し
-
-日本語でWindowsを使用している場合、同期フォルダ名が日本語になるので<br>
-そのフォルダを個人フォルダにリンクして完了。<br>
-以下は一例。
+#### リンクを張る
+シンボリックリンクを貼って終了
 
 ```bash
 ln -s ~/OneDrive/qwaxgo/ミュージック ~/Music
