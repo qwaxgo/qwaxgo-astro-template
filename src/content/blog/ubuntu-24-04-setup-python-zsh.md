@@ -19,8 +19,6 @@ description: Ubuntu 24.04 LTSの初期設定が終わったので、Python環境
 今回は中古で買ったHP Probook 430 G8に、Ubuntu24.04 LTSを入れ、初期設定を終えたので<br>
 Python環境と、ついでにZsh環境を構築します。
 
-[Inspiron 14 2-in-1 ノートパソコン(AMD)](https://www.dell.com/ja-jp/shop/laptops/amd/spd/inspiron-14-7445-2-in-1-laptop/oic7445200201monojp)
-
 [前回の記事](https://qwaxgo.com/blog/ubuntu-24-04-lts-first-setting-memorandum-hack-lab-host-os/)
 
 ### アップデート
