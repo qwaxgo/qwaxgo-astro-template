@@ -136,12 +136,12 @@ curl https://pyenv.run | bash
 #### 環境変数の記述
 
 pyenvの環境変数を記述する必要がある。<br>
-`~/.profile`及び`~/.zprofile`に以下を追記する。
+`~/.profile`に以下を追記する。
 
 ```zsh
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 ```
 
 追記後は一度再起動しよう。
