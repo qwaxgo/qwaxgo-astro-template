@@ -231,7 +231,7 @@ mv ~/Pictures ~~/OneDrive/qwaxgo/Pictures
 先ほど追加した`universe`リポジトリから、onedriveをインストールする
 
 ```bash
-sudo apt get install onedrive
+sudo apt install onedrive
 ```
 
 #### 設定ファイル作成
