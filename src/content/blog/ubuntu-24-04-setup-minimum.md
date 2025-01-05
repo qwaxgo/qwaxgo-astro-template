@@ -239,7 +239,7 @@ sudo apt install onedrive
 ```bash
 mkdir -p ~/.config/onedrive
 wget https://raw.githubusercontent.com/abraunegg/onedrive/master/config -O ~/.config/onedrive/config
-nano ~/.config/onedrive/config
+vim ~/.config/onedrive/config
 ```
 
 ##### アカウント毎に設定ファイルを分ける
@@ -285,7 +285,7 @@ onedrive --confdir="~/.config/onedriveqwaxgo"
 常に同期させるように設定する。
 
 ```bash
-onedrive --monitor --confdir="~/.config/onedriveMyAccount1" &<br>
+onedrive --monitor --confdir="~/.config/onedriveqwaxgo"
 
 ```
 
